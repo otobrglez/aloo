@@ -15,13 +15,18 @@ gem 'jquery-rails'
 gem 'redis'
 gem 'hiredis'
 
+gem 'sqlite3', group: [:development, :test]
+group :production do
+  gem 'pg'
+end
+
 group :development do
   gem 'heroku'
   gem 'spring'
   gem 'powder'
   gem 'guard'
   # gem 'guard-bundler'
-  gem 'guard-livereload', require: false
+  # gem 'guard-livereload', require: false
   gem 'guard-pow',        require: false
   gem 'guard-rspec',      require: false
   gem 'foreman'
@@ -35,8 +40,4 @@ group :test do
   gem 'pry-nav'
 end
 
-gem 'sqlite3', group: [:development, :test]
-
-group :production do
-  gem 'pg'
-end
+gem 'puma'
