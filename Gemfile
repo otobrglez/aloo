@@ -42,4 +42,4 @@ group :test do
   gem 'pry-nav'
 end
 
-# gem 'puma'
+gem 'unicorn'
