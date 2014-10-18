@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title Aloo
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track'
+    = csrf_meta_tags
+  %body
+    = yield
