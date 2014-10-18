@@ -1,15 +1,6 @@
-KPI = Struct.new(:project, :metric, :date, :value) do
-
-  attr_reader :sdate
-  def sdate
-    @sdate ||= if date.is_a?(DateTime)
-      date
-    else
-      DateTime.iso8601(date)
-    end
-  end
+KPI = Struct.new(:project, :date, :key, :value) do
 
   def keys
-    []
+    @keys ||= KPIKey.new(project, date, key).keys
   end
 end

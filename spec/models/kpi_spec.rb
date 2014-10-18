@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe KPI do
 
   context "basic example" do
-    subject { KPI.new("test", "visits", "2014-01-01T18:00:00", 100) }
+    subject { KPI.new("test", "2014-01-01T18:00:00", "visits", 100) }
     it { expect(subject.keys).to be_kind_of Array }
-    it { expect(subject.sdate).to be_kind_of DateTime }
+    it {
+      puts subject.keys
+    }
   end
-
 end
+

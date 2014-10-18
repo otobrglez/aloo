@@ -4,7 +4,7 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.6'
 
-gem 'sqlite3'
+
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'haml-rails'
@@ -16,6 +16,7 @@ gem 'redis'
 gem 'hiredis'
 
 group :development do
+  gem 'heroku'
   gem 'spring'
   gem 'powder'
   gem 'guard'
@@ -32,4 +33,10 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'pry-nav'
+end
+
+gem 'sqlite3', group: [:development, :test]
+
+group :production do
+  gem 'pg'
 end
