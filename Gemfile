@@ -4,13 +4,15 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.6'
 
-
-
 gem 'sass-rails', '~> 4.0.3'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+gem 'compass-rails'
 
 gem 'redis'
 gem 'hiredis'
@@ -26,7 +28,7 @@ group :development do
   gem 'powder'
   gem 'guard'
   # gem 'guard-bundler'
-  # gem 'guard-livereload', require: false
+  gem 'guard-livereload', require: false
   gem 'guard-pow',        require: false
   gem 'guard-rspec',      require: false
   gem 'foreman'
@@ -40,4 +42,4 @@ group :test do
   gem 'pry-nav'
 end
 
-gem 'puma'
+# gem 'puma'

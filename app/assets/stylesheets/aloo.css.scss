@@ -1,0 +1,120 @@
+/* My code */
+$aloo_color_green: #8ED1A5;
+$aloo_color_main: #0F275D; // #252132; //
+$aloo_color_main_2: #130F23; // #2C7ABA;
+$aloo_color_header: #FFF;
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400,900,400italic);
+$aloo_font_g1: 'Lato', sans-serif;
+
+body{
+  font-family: $aloo_font_g1;
+}
+
+#header{
+  background-color: $aloo_color_main;
+  @include filter-gradient($aloo_color_main, $aloo_color_main_2, vertical);
+  @include background-image(linear-gradient(right bottom,  $aloo_color_main 0%, $aloo_color_main_2 80%));
+  position: relative;
+  display: block;
+
+  color: $aloo_color_header;
+  a{ color: $aloo_color_header; }
+  padding-bottom: 20px;
+
+  #nav{
+    .container { position: relative; }
+    line-height: 60px;
+    a { line-height: 60px; }
+    a.brand {
+      font-weight: 900;
+    }
+
+    ul.menu {
+      height: 50px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      list-style: none;
+      li{
+        float: left;
+        display: inline-block;
+        a {
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+  .intro{
+    p,h1{
+      margin: 0px;
+      padding: 0px;
+    }
+
+    p{
+      margin-bottom: 30px;
+    }
+    .inside-content {
+      text-align: center;
+    }
+    h1.big{
+      margin-top: 50px;
+      font-size: 60px;
+      font-weight: normal;
+    }
+    p.details{
+      font-size: 20px;
+      small {
+        display: block;
+        font-size: 10px;
+        font-style: italic;
+      }
+    }
+    p.call-to-action{
+      a.lrn{
+        text-decoration: underline;
+      }
+      .btn-default{
+        background-color: transparentize($aloo_color_header, 0.6);
+        border-color: white;
+        color: white;
+        &:hover {
+          background-color: transparentize($aloo_color_header, 0.8);
+        }
+      }
+    }
+    p.more-details {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-top: 1px solid transparentize(white, 0.9);
+      border-bottom: 1px solid transparentize(white, 0.9);
+    }
+  }
+}
+
+#welcome {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .d-column{
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+  }
+  span.icon{
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: image-url('update.png');
+    background-size: 100%;
+    &.agg { background-image: image-url('money.png'); }
+    &.dash{ background-image: image-url('line_chart.png')}
+  }
+
+  h1{
+    font-weight: 400;
+  }
+}
