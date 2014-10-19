@@ -26,3 +26,6 @@
     = render 'layouts/footer'
     = javascript_include_tag 'application'
 
+    - if content_for?(:after_footer_js)
+      = yield :after_footer_js
+

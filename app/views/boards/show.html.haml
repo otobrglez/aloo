@@ -81,3 +81,10 @@
 
 
 = render 'help_modal'
+
+- content_for :after_footer_js do
+  - if flash[:show_modal] == 'help_modal'
+    :javascript
+      $(document).ready(function(){
+        $('#helpModal').modal();
+      });

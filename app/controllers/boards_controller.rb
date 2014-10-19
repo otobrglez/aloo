@@ -6,9 +6,9 @@ class BoardsController < ApplicationController
   def create
     @board = Board.generate!(board_params)
     if @board.save
-      redirect_to board_path(@board, show_help: 1)
+      flash[:show_modal] = "help_modal"
+      redirect_to board_path(@board)
     else
-      @show_form = true
       render 'home/index', layout: false
     end
   end
