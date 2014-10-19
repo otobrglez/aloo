@@ -3,6 +3,8 @@ $aloo_color_green: #8ED1A5;
 $aloo_color_main: #0F275D; // #252132; //
 $aloo_color_main_2: #130F23; // #2C7ABA;
 $aloo_color_header: #FFF;
+$aloo_color_chartbg: lighten($aloo_color_main, 10%);
+$aloo_color_chartbg_2: lighten($aloo_color_main_2, 10%);
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400,900,400italic);
 $aloo_font_g1: 'Lato', sans-serif;

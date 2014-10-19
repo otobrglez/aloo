@@ -1,32 +1,33 @@
-%h1
-  =link_to raw("&lsaquo;"), root_path
-  Console
+.container
+  %h1
+    =link_to raw("&lsaquo;"), root_path
+    Console
 
-= render 'form'
+  = render 'form'
 
-%br/
+  %br/
 
-- if (results = @console.redis_results).is_a?(String)
-  %p
-    = results
-- elsif results.nil?
-  %p
-    Nil returned.
-- elsif results.is_a?(Array)
-  - if results.empty?
-    %p No results,...
-  - else
-    %table.table.table-striped.table-condensed
-      %thead
-        %tr
-          %th{style: "width: 30px"} I
-          %th Value
-      %tbody
-        - results.each_with_index do |r, i|
+  - if (results = @console.redis_results).is_a?(String)
+    %p
+      = results
+  - elsif results.nil?
+    %p
+      Nil returned.
+  - elsif results.is_a?(Array)
+    - if results.empty?
+      %p No results,...
+    - else
+      %table.table.table-striped.table-condensed
+        %thead
           %tr
-            %th=i
-            %td=r
-- else
-  %p
-    = results
+            %th{style: "width: 30px"} I
+            %th Value
+        %tbody
+          - results.each_with_index do |r, i|
+            %tr
+              %th=i
+              %td=r
+  - else
+    %p
+      = results
 

@@ -1,62 +1,83 @@
 - content_for(:title) do
   =link_to "#{@board.to_s.titleize} - Dashboard", board_path(@board)
 
-%h1
-  =@board.to_s.titleize
-  %small.pull-right
-    %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Instructions &amp; sharing
+#board-chart
+  #titlebar
+    .container
+      %h1=@board.to_s.titleize
 
-%h3
-  ="Weeks"
-  %small.pull-right="#{DateTime.now.beginning_of_week.strftime('%a, %e. %b')} - #{DateTime.now.end_of_week.strftime('%a, %e. %b')}"
-%table.table.table-condensed.table-striped-x
-  %thead
-    %tr
-      %th.text-center Week No.
-      - Date::DAYNAMES.each do |day|
-        %th.text-center=day
-  %tbody
-    - weeks = []
-    - 0.upto(2).each do |w|
-      - starts_at = (DateTime.now-w.weeks).beginning_of_week
-      - ends_at = (DateTime.now-w.weeks).end_of_week
-      %tr
-        %th.text-center=starts_at.strftime('%W')
-        - (weeks[w] = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at)).each do |k,v|
-          %td.text-center
-            = v || 0
+  #charts
+    .wrap
+      %canvas#weeksChart.visible=" "
+      %canvas#quartersChart=" "
 
-%h3 Quarters
-%table.table.table-condensed.table-striped-x
-  %thead
-    %tr
-      %th.text-center Year
-      - quads.each_with_index do |(starts_at, ends_at), i|
-        %th.text-center
-          = "Q#{(i+1)}"
-          %br/
-          %small
-            = [starts_at, ends_at].map {|t| t.strftime('%b') }.join(" - ")
-  %tbody
-    - 0.upto(1).each do |q|
-      - year = DateTime.now.year-q
-      %tr
-        %th.text-center=year
-        - quads(year).each_with_index do |(starts_at, ends_at), i|
-          %td.text-center{style: "width: 20%"}
-            - sum = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at).inject(0.0){|sum, (k,v)| sum += (v || '0').to_f }
-            = '%.2f' % sum
--#
-  %h3 This year
-  %table.table.table-condensed.table-striped-x
-    %tr
-      - (Date::MONTHNAMES[1..-1]).each do |m|
-        %th.text-center=m
-    %tr
-      - stats(/\:m\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
-        %td.text-center{style: 'width: 8%'}
-          = v || 0
+  #tabs-wrap
+    .container.text-center
+      %ul#tabs.nav.nav-tabs
+        %li.active
+          %a{href:"#weeksTable", 'data-toggle'=>"tab"} Weeks
+        %li
+          %a{href:"#quartersTable", 'data-toggle'=>"tab"} Quarters
 
+#board-tables
+  .container
+    %p
+      %span.pull-right
+        %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Instructions &amp; sharing
+    %br/
+    .tab-content
+      #weeksTable.tab-pane.active
+        %h3
+          ="Weeks"
+          %small.pull-right="#{DateTime.now.beginning_of_week.strftime('%a, %e. %b')} - #{DateTime.now.end_of_week.strftime('%a, %e. %b')}"
+        %table.table.table-condensed.table-striped-x
+          %thead
+            %tr
+              %th.text-center Week No.
+              - Date::DAYNAMES.each do |day|
+                %th.text-center=day
+          %tbody
+            - weeks = []
+            - 0.upto(2).each do |w|
+              - starts_at = (DateTime.now-w.weeks).beginning_of_week
+              - ends_at = (DateTime.now-w.weeks).end_of_week
+              %tr
+                %th.text-center=starts_at.strftime('%W')
+                - (weeks[w] = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at)).each do |k,v|
+                  %td.text-center
+                    = v || 0
+
+      #quartersTable.tab-pane
+        %h3 Quarters
+        %table.table.table-condensed.table-striped-x
+          %thead
+            %tr
+              %th.text-center Year
+              - quads.each_with_index do |(starts_at, ends_at), i|
+                %th.text-center{'data-label'=>"Q#{(i+1)}"}
+                  = "Q#{(i+1)}"
+                  %br/
+                  %small
+                    = [starts_at, ends_at].map {|t| t.strftime('%b') }.join(" - ")
+          %tbody
+            - 0.upto(1).each do |q|
+              - year = DateTime.now.year-q
+              %tr
+                %th.text-center=year
+                - quads(year).each_with_index do |(starts_at, ends_at), i|
+                  %td.text-center{style: "width: 20%"}
+                    - sum = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at).inject(0.0){|sum, (k,v)| sum += (v || '0').to_f }
+                    = '%.2f' % sum
+    -#
+      %h3 This year
+      %table.table.table-condensed.table-striped-x
+        %tr
+          - (Date::MONTHNAMES[1..-1]).each do |m|
+            %th.text-center=m
+        %tr
+          - stats(/\:m\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
+            %td.text-center{style: 'width: 8%'}
+              = v || 0
 
 
 = render 'help_modal'
