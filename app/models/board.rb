@@ -2,19 +2,16 @@ class Board
   class RecordNotFound < StandardError; end
 
   include ActiveModel::Model
-  FIELDS = %i{id s name public}
+  FIELDS = %i{id s name public created_at updated_at}
   attr_accessor *FIELDS
   validates :name, presence: true, length: {within: 3..30}
   validates :id, presence: true, format: {with: /\A[0-9a-f]+\z/ }
   validates :s, presence: true, format: {with: /\A[0-9a-f]+\z/ }
 
-  def public
-    "1"
-  end
-
-  def persisted?
-    false
-  end
+  def public; "1"; end
+  def created_at; DateTime.now.iso8601; end
+  def updated_at; DateTime.now.iso8601; end
+  def persisted?; false; end
 
   def to_param
     self.id

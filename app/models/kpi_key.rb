@@ -10,7 +10,6 @@ class KpiKey < Struct.new(:rkey, :rdate)
     elsif rdate.is_a?(Date)
       rdate.iso8601
     else
-      # raise StandardError.new(rdate.class.to_s+" #{rdate}")
       DateTime.iso8601(rdate)
     end
   end
