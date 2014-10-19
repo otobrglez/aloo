@@ -23,4 +23,6 @@
       =yield
 
     = render partial: 'boards/blank_modal', locals: {board: Board.new}
+    = render 'layouts/footer'
     = javascript_include_tag 'application'
+

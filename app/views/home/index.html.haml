@@ -27,19 +27,28 @@
             %small *it's like Gist, but for BI.
 
           %p.call-to-action
-            See examples
-
-            or
-
-            = link_to "#", class: %w{btn btn-default nice}, 'data-toggle'=>"modal", 'data-target'=>"#blankBoard"  do
-              create new dashboard
+            = link_to "#", class: %w{btn btn-default btn-lg nice}, 'data-toggle'=>"modal", 'data-target'=>"#blankBoard"  do
+              Create new dashboard
               for free!
 
+          -#
+            %p.more-details
+              This project was build in 48 hours by
+              =link_to "Oto Brglez", "https://twitter.com/otobrglez"
+              for
+              = link_to "RailsRumble 2014", "http://railsrumble.com/"
+
           %p.more-details
-            This project was build in 48 hours by
-            =link_to "Oto Brglez", "https://twitter.com/otobrglez"
-            for
-            = link_to "RailsRumble 2014", "http://railsrumble.com/"
+            Examples rule! Check
+
+            %a.btn.btn-default.nice{href: 'http://aloo.r14.railsrumble.com/boards/590388c41'} running distance visualisation
+
+            and this
+
+            %a.btn.btn-default.nice{href: 'http://aloo.r14.railsrumble.com/boards/3e1d07053'} Ruby trends from imported from Google Trends
+
+
+
     #welcome
       .container
         .col-md-4.d-column
@@ -56,5 +65,6 @@
           %p Aloo instantly provides elegant and powerful dashboards that makes sense of your data.
 
     = render partial: 'boards/blank_modal', locals: { board: @board }
+    = render 'layouts/footer'
 
 

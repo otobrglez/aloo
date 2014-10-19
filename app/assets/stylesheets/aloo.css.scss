@@ -107,6 +107,10 @@ body{
       padding-bottom: 20px;
       border-top: 1px solid transparentize(white, 0.9);
       border-bottom: 1px solid transparentize(white, 0.9);
+
+      .uses {
+        margin-bottom: 5px;
+      }
     }
   }
 }
@@ -117,6 +121,10 @@ body{
   color: white;
   &:hover {
     background-color: transparentize($aloo_color_header, 0.8);
+  }
+
+  &.big {
+    height: 50px;
   }
 }
 
