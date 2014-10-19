@@ -4,7 +4,7 @@ class Board
   include ActiveModel::Model
   FIELDS = %i{id s name public created_at updated_at}
   attr_accessor *FIELDS
-  validates :name, presence: true, length: {within: 3..30}
+  validates :name, presence: true, length: {within: 3..100}
   validates :id, presence: true, format: {with: /\A[0-9a-f]+\z/ }
   validates :s, presence: true, format: {with: /\A[0-9a-f]+\z/ }
 
