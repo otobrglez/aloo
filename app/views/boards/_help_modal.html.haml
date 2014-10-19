@@ -10,16 +10,12 @@
       .modal-body
         %form.form{role: :form}
           .form-group
-            %h3 Welcome! This is your new Aloo board.
             %label{for: :url} Public URL
             %input.form-control{name: :url, value: "#{board_url(@board)}"}
 
-            %h3 Example API calls
-            %p For one KPI
-            %textarea.form-control{rows: 5}= example_command_for_create(@board)
-
-            %p For multiple KPIs
-            %textarea.form-control{rows: 5}= example_command_for_bulk_create(@board)
+            %h1 API request example
+            %p Create request like this in your terminal.
+            %textarea.form-control{rows: 6}= example_command_for_bulk_create(@board)
 
 - if @show_help
   :javascript

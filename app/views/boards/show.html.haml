@@ -1,10 +1,14 @@
 - content_for(:title) do
-  =link_to "#{@board.to_s.titleize} - Dashboard", board_path(@board)
+  =link_to "#{@board.to_s.titleize} - Dashboard", board_path(@board), class: %w{blink}
+
+  %a.btn.btn-default.nice{'data-toggle'=>"modal", 'data-target'=>"#blankBoard"} Create new board
 
 #board-chart
   #titlebar
     .container
       %h1=@board.to_s.titleize
+
+      %a#share-btn.btn.btn-default{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Instructions &amp; sharing
 
   #charts
     .wrap
@@ -15,20 +19,16 @@
     .container.text-center
       %ul#tabs.nav.nav-tabs
         %li.active
-          %a{href:"#weeksTable", 'data-toggle'=>"tab"} Weeks
+          %a{href:"#weeksTable", 'data-toggle'=>"tab"} Weekly overview
         %li
           %a{href:"#quartersTable", 'data-toggle'=>"tab"} Quarters
 
 #board-tables
   .container
-    %p
-      %span.pull-right
-        %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Instructions &amp; sharing
-    %br/
     .tab-content
       #weeksTable.tab-pane.active
         %h3
-          ="Weeks"
+          ="Past three weeks"
           %small.pull-right="#{DateTime.now.beginning_of_week.strftime('%a, %e. %b')} - #{DateTime.now.end_of_week.strftime('%a, %e. %b')}"
         %table.table.table-condensed.table-striped-x
           %thead
@@ -48,7 +48,7 @@
                     = v || 0
 
       #quartersTable.tab-pane
-        %h3 Quarters
+        %h3 Quarterly overview
         %table.table.table-condensed.table-striped-x
           %thead
             %tr

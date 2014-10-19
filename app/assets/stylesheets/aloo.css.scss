@@ -39,9 +39,22 @@ body{
   #nav{
     .container { position: relative; }
     line-height: 60px;
-    a { line-height: 60px; }
+    a { line-height: 60px; margin-right: 20px;}
     a.brand {
       font-weight: 900;
+    }
+
+    a.blink{
+    }
+
+    a.nice {
+      padding: 0px;
+      margin: 0px;
+      height: 26px;
+      line-height: 23px;
+      vertical-align: middle;
+      padding-left: 5px;
+      padding-right: 5px;
     }
 
     ul.menu {
@@ -88,14 +101,6 @@ body{
       a.lrn{
         text-decoration: underline;
       }
-      .btn-default{
-        background-color: transparentize($aloo_color_header, 0.6);
-        border-color: white;
-        color: white;
-        &:hover {
-          background-color: transparentize($aloo_color_header, 0.8);
-        }
-      }
     }
     p.more-details {
       padding-top: 20px;
@@ -103,6 +108,15 @@ body{
       border-top: 1px solid transparentize(white, 0.9);
       border-bottom: 1px solid transparentize(white, 0.9);
     }
+  }
+}
+
+.btn.nice {
+  background-color: transparentize($aloo_color_header, 0.6);
+  border-color: white;
+  color: white;
+  &:hover {
+    background-color: transparentize($aloo_color_header, 0.8);
   }
 }
 
@@ -131,6 +145,10 @@ body{
   h1{
     font-weight: 400;
   }
+}
+
+a#share-btn {
+  background-color: $aloo_color_chartbg_2;
 }
 
 .field_with_errors input{

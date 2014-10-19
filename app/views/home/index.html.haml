@@ -19,8 +19,7 @@
 
       .intro.container
         .inside-content
-          %h1.big
-            Business analytics. Fast.
+          %h1.big Business analytics. Fast.
 
           %p.details
             Aloo is simple way to create and share real-time analytical dashboards with others.
@@ -32,7 +31,7 @@
 
             or
 
-            = link_to "#", class: %w{btn btn-default}, 'data-toggle'=>"modal", 'data-target'=>"#blankBoard"  do
+            = link_to "#", class: %w{btn btn-default nice}, 'data-toggle'=>"modal", 'data-target'=>"#blankBoard"  do
               create new dashboard
               for free!
 
@@ -56,6 +55,6 @@
           %h1 Dashboards
           %p Aloo instantly provides elegant and powerful dashboards that makes sense of your data.
 
-    = render 'boards/blank_modal'
+    = render partial: 'boards/blank_modal', locals: { board: @board }
 
 

@@ -1,7 +1,7 @@
 .modal.fade.bs-example-modal-sm#blankBoard{role: "dialog", 'aria-hidden' => true}
   .modal-dialog
     .modal-content
-      = form_for @board, url: boards_path, html:{ class: %w{form}, role: 'form'} do |f|
+      = form_for board, url: boards_path, html:{ class: %w{form}, role: 'form'} do |f|
         .modal-header
           %button{type: :button, class: %w{close}, 'data-dismiss' => :modal}
             %span{'aria-hidden' => true}=raw('&times;')

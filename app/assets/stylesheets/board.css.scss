@@ -15,15 +15,12 @@
     left: 0px;
     right: 0px;
   }
-
   #titlebar {
     top: 0px;
   }
-
   #tabsbar {
     bottom: 0px;
   }
-
   .container {
     color: white;
     a{ color: white; }
@@ -43,9 +40,19 @@
         *display:inline;
         zoom:1;
         border-bottom: none;
-        a{ border-bottom: none; border: none; }
-        a:hover { color: #333; }
         border: none;
+        a{
+          border-bottom: none;
+          border: none;
+          background-color: #fff;
+          color: #CCC;
+          &:hover {
+            color: #666;
+          }
+        }
+        &.active a {
+          color: #000;
+        }
     }
     .nav-tabs, .nav-pills {
       text-align: center;
@@ -55,7 +62,7 @@
   #charts {
     display: block;
     width: 100%;
-    height: 400px;
+    height: 410px;
   }
 
   #charts .wrap {
