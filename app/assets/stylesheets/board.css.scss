@@ -4,8 +4,19 @@
 }
 
 #board-chart {
+  background-color: $aloo_color_chartbg_2;
+
+  /* FF fixes */
+  background: -moz-linear-gradient(top, $aloo_color_chartbg 0%, $aloo_color_chartbg_2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$aloo_color_chartbg), color-stop(100%,$aloo_color_chartbg_2));
+  background: -webkit-linear-gradient(top, $aloo_color_chartbg 0%,$aloo_color_chartbg_2 100%);
+  background: -o-linear-gradient(top, $aloo_color_chartbg 0%,$aloo_color_chartbg_2 100%);
+  background: -ms-linear-gradient(top, $aloo_color_chartbg 0%,$aloo_color_chartbg_2 100%);
+  background: linear-gradient(to bottom, $aloo_color_chartbg 0%,$aloo_color_chartbg_2 100%);
+
   @include filter-gradient($aloo_color_chartbg, $aloo_color_chartbg_2, vertical);
   @include background-image(linear-gradient(top,  $aloo_color_chartbg 0%, $aloo_color_chartbg_2 80%));
+
   position: relative;
 
   #titlebar, #tabsbar{
