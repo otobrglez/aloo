@@ -136,6 +136,7 @@ GEM
     minitest (5.4.2)
     multi_json (1.10.1)
     netrc (0.7.9)
+    newrelic_rpm (3.9.5.251)
     powder (0.2.1)
       thor (>= 0.11.5)
     pry (0.10.1)
@@ -255,6 +256,7 @@ DEPENDENCIES
   heroku
   hiredis
   jquery-rails
+  newrelic_rpm
   powder
   pry-nav
   rails (= 4.1.6)

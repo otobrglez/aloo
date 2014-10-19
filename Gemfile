@@ -18,6 +18,7 @@ gem 'redis'
 gem 'hiredis'
 
 group :production do
+  gem 'newrelic_rpm'
   gem 'rails_12factor'
 end
 
