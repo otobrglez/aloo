@@ -11,6 +11,18 @@ body{
   font-family: $aloo_font_g1;
 }
 
+/* Bootstrap fixes */
+.modal-content {
+  border-radius: 3px;
+}
+
+.modal-header{
+  color: white;
+  .close { color: white; }
+  @include filter-gradient($aloo_color_main, $aloo_color_main_2, vertical);
+  @include background-image(linear-gradient(top bottom,  $aloo_color_main 0%, $aloo_color_main_2 80%));
+}
+
 #header{
   background-color: $aloo_color_main;
   @include filter-gradient($aloo_color_main, $aloo_color_main_2, vertical);
@@ -20,7 +32,7 @@ body{
 
   color: $aloo_color_header;
   a{ color: $aloo_color_header; }
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 
   #nav{
     .container { position: relative; }
@@ -117,4 +129,8 @@ body{
   h1{
     font-weight: 400;
   }
+}
+
+.field_with_errors input{
+  border: 1px solid red;
 }

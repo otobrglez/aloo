@@ -1,47 +1,61 @@
-%header#header
-  %nav#nav
-    .container
-      =link_to 'Aloo', root_path, class: 'brand'
-      %ul.menu
-        %li=link_to '@otobrglez', 'https://twitter.com/otobrglez'
+!!!
+%html
+  %head
+    %title Aloo
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
 
-  .intro.container
-    .inside-content
-      %h1.big
-        Business analytics. Fast.
+    %meta{charset: "utf-8"}
+    %meta{:'http-equiv'=> "X-UA-Compatible", content: "IE=edge"}
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+  %body
+    %header#header
+      %nav#nav
+        .container
+          =link_to 'Aloo', root_path, class: 'brand'
+          %ul.menu
+            %li=link_to '@otobrglez', 'https://twitter.com/otobrglez'
 
-      %p.details
-        Aloo is simple way to create and share real-time analytical dashboards with others.
+      .intro.container
+        .inside-content
+          %h1.big
+            Business analytics. Fast.
 
-        %small *it's like Gist, but for BI.
+          %p.details
+            Aloo is simple way to create and share real-time analytical dashboards with others.
 
-      %p.call-to-action
-        %a.lrn{href:"#"} See example
+            %small *it's like Gist, but for BI.
 
-        or
+          %p.call-to-action
+            See examples
 
-        %a.btn.btn-default{href:"#"}
-          create new dashboard
-          %strong for free
-          now!
+            or
 
-      %p.more-details
-        This project was build in 48 hours by
-        =link_to "Oto Brglez", "https://twitter.com/otobrglez"
-        for
-        = link_to "RailsRumble 2014", "http://railsrumble.com/"
+            = link_to "#", class: %w{btn btn-default}, 'data-toggle'=>"modal", 'data-target'=>"#blankBoard"  do
+              create new dashboard
+              for free!
 
-#welcome
-  .container
-    .col-md-4.d-column
-      %span.icon.api
-      %h1 API
-      %p Aloo has very simple, secure and robust API that handles large amount of key performance indicators (KPIs) from your business.
-    .col-md-4.d-column
-      %span.icon.agg
-      %h1 Aggregating
-      %p Aloo uses demoralized NoSQL database to store precomputed data.
-    .col-md-4.d-column
-      %span.icon.dash
-      %h1 Dashboards
-      %p Aloo instantly provides elegant but powerful dashboards that will make sense of your data. Dashboards will provide you with information that you need to make those hard business decisions.
+          %p.more-details
+            This project was build in 48 hours by
+            =link_to "Oto Brglez", "https://twitter.com/otobrglez"
+            for
+            = link_to "RailsRumble 2014", "http://railsrumble.com/"
+    #welcome
+      .container
+        .col-md-4.d-column
+          %span.icon.api
+          %h1 API
+          %p Aloo has very simple, secure and robust API that handles large amount of key performance indicators (KPIs) from your business.
+        .col-md-4.d-column
+          %span.icon.agg
+          %h1 Aggregating
+          %p Aloo uses demoralized NoSQL database to store precomputed data on the fly.
+        .col-md-4.d-column
+          %span.icon.dash
+          %h1 Dashboards
+          %p Aloo instantly provides elegant and powerful dashboards that makes sense of your data.
+
+    = render 'boards/blank_modal'
+
+

@@ -10,4 +10,21 @@
     %meta{:'http-equiv'=> "X-UA-Compatible", content: "IE=edge"}
     %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   %body
-    = yield
+    %header#header
+      %nav#nav
+        .container
+          =link_to 'Aloo', root_path, class: 'brand'
+
+          - if content_for?(:title)
+            = raw('&rsaquo;')
+
+            = yield :title
+
+
+          %ul.menu
+            %li=link_to '@otobrglez', 'https://twitter.com/otobrglez'
+
+    #content
+      .container
+        =yield
+

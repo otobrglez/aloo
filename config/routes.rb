@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  namespace :api do
-    get 'feed' => 'feed#index'
+  post 'console' => 'console#create', as: 'consoles'
+  resources :console, only: [:index, :create]
+
+  resources :boards, only: [:show, :create, :index]
+
+  namespace :api, defaults: {format: 'json'} do
+    post 'kpis' => 'kpis#create'
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

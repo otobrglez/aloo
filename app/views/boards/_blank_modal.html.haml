@@ -1,0 +1,21 @@
+.modal.fade.bs-example-modal-sm#blankBoard{role: "dialog", 'aria-hidden' => true}
+  .modal-dialog
+    .modal-content
+      = form_for @board, url: boards_path, html:{ class: %w{form}, role: 'form'} do |f|
+        .modal-header
+          %button{type: :button, class: %w{close}, 'data-dismiss' => :modal}
+            %span{'aria-hidden' => true}=raw('&times;')
+            %span.sr-only Close
+
+          %h4.modal-title New Aloo Dashboard
+        .modal-body
+          .form-group
+            =f.label :name, 'Short name for your dashboard'
+            =f.text_field :name, class: %w{form-control}, placeholder: "Something like: 'sales', 'visits', etc..."
+        .modal-footer
+          %button{type: :button, class: %w{btn btn-default}, 'data-dismiss'=>"modal"} Close
+          = f.submit "Create new board", class: %w{btn btn-primary}
+
+- if @show_form
+  :javascript
+    $('#blankBoard').modal('show');

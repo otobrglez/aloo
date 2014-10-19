@@ -1,6 +1,7 @@
 class Stats
-  def initialize project, key, match, options={}
-    @project = project
+  attr_reader :date_range
+
+  def initialize key, match, options={}
     @key = key
     @match = match
     @options = options
@@ -11,18 +12,22 @@ class Stats
 
     starts_at = if rstarts_at.is_a?(DateTime)
       rstarts_at
+    elsif rstarts_at.is_a?(Date)
+      rstarts_at.iso8601
     else
       DateTime.iso8601(rstarts_at)
     end
 
     ends_at = if rends_at.is_a?(DateTime)
       rends_at
+    elsif rends_at.is_a?(Date)
+      rends_at.iso8601
     else
       DateTime.iso8601(rends_at)
     end
 
-    (starts_at..ends_at).map do |date|
-      k = KPIKey.new(@project, date, @key)
+    (@date_range = (starts_at..ends_at)).map do |date|
+      k = KpiKey.new(@key, date)
       k.keys
     end.flatten.uniq
   end
@@ -33,13 +38,7 @@ class Stats
     result = $redis.mget final_keys
 
     final_keys.zip(result).map do |rkey, value|
-      k_split = rkey.split(":")
-      {
-        key: rkey,
-        project: k_split[0],
-        name: k_split[1],
-        value: value
-      }
+      [rkey, value]
     end
   end
 end

@@ -1,0 +1,4 @@
+= form_for @console, html:{ class: %w{form}, role: 'form'} do |f|
+  .form-group
+    =f.label :query, 'Query'
+    =f.text_field :query, class: %w{form-control}, placeholder: 'REDIS expression... '

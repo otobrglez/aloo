@@ -1,0 +1,48 @@
+- content_for(:title) do
+  =link_to @board.to_s.titleize, board_path(@board)
+  |
+  %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Help &amp; Settings
+
+%h1= link_to @board.to_s.titleize, board_path(@board)
+
+%h3
+  ="Weeks"
+  %small.pull-right="#{DateTime.now.beginning_of_week.strftime('%a, %e. %b')} - #{DateTime.now.end_of_week.strftime('%a, %e. %b')}"
+%table.table.table-condensed.table-striped-x
+  %thead
+    %tr
+      - Date::DAYNAMES.each do |day|
+        %th.text-center=day
+  %tbody
+    - weeks = []
+    - 0.upto(2).each do |w|
+      %tr
+        - (weeks[w] = stats(/\:d\:/, starts_at: (DateTime.now-w.weeks).beginning_of_week, ends_at: (DateTime.now-w.weeks).end_of_week)).each do |k,v|
+          %td.text-center
+            = v || 0
+
+%h3 Quarters
+%table.table.table-condensed.table-striped-x
+  %thead
+    %tr
+      - (1..4).to_a.each do |q|
+        %th.text-center= "Q#{q}"
+  %tbody
+    %tr
+      - stats(/\:q\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
+        %td.text-center{style: 'width: 25%'}
+          = v || 0
+
+%h3 This year
+%table.table.table-condensed.table-striped-x
+  %tr
+    - (Date::MONTHNAMES[1..-1]).each do |m|
+      %th.text-center=m
+  %tr
+    - stats(/\:m\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
+      %td.text-center{style: 'width: 8%'}
+        = v || 0
+
+
+
+= render 'help_modal'

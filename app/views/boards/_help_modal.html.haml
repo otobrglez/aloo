@@ -1,0 +1,26 @@
+#helpModal.modal.fade{role: "dialog", 'aria-hidden' => true}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{type: :button, class: %w{close}, 'data-dismiss' => :modal}
+          %span{'aria-hidden' => true}=raw('&times;')
+          %span.sr-only Close
+
+        %h4.modal-title Board Usage Instructions
+      .modal-body
+        %form.form{role: :form}
+          .form-group
+            %h3 Welcome! This is your new Aloo board.
+            %label{for: :url} Public URL
+            %input.form-control{name: :url, value: "#{board_url(@board)}"}
+
+            %h3 Example API calls
+            %p For one KPI
+            %textarea.form-control{rows: 5}= example_command_for_create(@board)
+
+            %p For multiple KPIs
+            %textarea.form-control{rows: 5}= example_command_for_bulk_create(@board)
+
+- if @show_help
+  :javascript
+    $('#helpModal').modal('show');

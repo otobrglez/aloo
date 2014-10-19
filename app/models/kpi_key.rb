@@ -1,26 +1,24 @@
-class KPIKey < Struct.new(:rproject, :rdate, :rkey)
+class KpiKey < Struct.new(:rkey, :rdate)
   class InvalidKeyFormat < StandardError; end
   class InvalidProjectFormat < StandardError; end
 
-  VALID_PROJECT_FORMAT = /^[a-zA-Z]{3,7}$/
-  VALID_KEY_FORMAT =  /^[a-zA-Z_]{3,50}$/
+  VALID_KEY_FORMAT =  /^[a-z0-9\:]{3,50}$/
 
   def date
     @date ||= if rdate.is_a?(DateTime)
       rdate
+    elsif rdate.is_a?(Date)
+      rdate.iso8601
     else
+      # raise StandardError.new(rdate.class.to_s+" #{rdate}")
       DateTime.iso8601(rdate)
     end
   end
 
   def valid_key
     raise InvalidKeyFormat.new(rkey) if rkey !~ VALID_KEY_FORMAT
-    rkey
-  end
 
-  def valid_project
-    raise InvalidProjectFormat.new(rproject) if rproject !~ VALID_PROJECT_FORMAT
-    rproject
+    rkey
   end
 
   def year; @year ||= date.strftime('%y')                       end
@@ -32,7 +30,7 @@ class KPIKey < Struct.new(:rproject, :rdate, :rkey)
   def hour_in_day; @hour_in_day ||= date.hour                   end
 
   def key
-    @key ||= [valid_project, valid_key].join(":")
+    @key ||= valid_key
   end
 
   def keys
@@ -42,6 +40,9 @@ class KPIKey < Struct.new(:rproject, :rdate, :rkey)
 
       # Quarterly
       [key, year, 'q', quarter],
+
+      # Monthly
+      [key, year, 'm', month_in_year],
 
       # Weekly
       [key, year, 'w0', week_in_year],

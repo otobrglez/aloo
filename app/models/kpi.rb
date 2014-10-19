@@ -1,6 +1,6 @@
-class KPI < Struct.new(:project, :date, :key, :value)
+class Kpi < Struct.new(:key, :date, :value)
   def keys
-    @keys ||= KPIKey.new(project, date, key).keys
+    @keys ||= KpiKey.new(key, date).keys
   end
 
   def create!
