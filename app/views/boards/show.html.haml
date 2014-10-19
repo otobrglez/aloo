@@ -1,9 +1,10 @@
 - content_for(:title) do
-  =link_to @board.to_s.titleize, board_path(@board)
-  |
-  %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Help &amp; Settings
+  =link_to "#{@board.to_s.titleize} - Dashboard", board_path(@board)
 
-%h1= link_to @board.to_s.titleize, board_path(@board)
+%h1
+  =@board.to_s.titleize
+  %small.pull-right
+    %a{href:"#toggle", 'data-toggle'=>"modal", 'data-target'=>"#helpModal"} Instructions &amp; sharing
 
 %h3
   ="Weeks"
