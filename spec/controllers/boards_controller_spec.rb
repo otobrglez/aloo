@@ -14,7 +14,7 @@ RSpec.describe BoardsController do
 
     context "valid" do
       before { post :create, board: { name: 'visits'} }
-      it { expect(response).to redirect_to("/boards/#{assigns(:board).id}?show_help=1") }
+      it { expect(response).to redirect_to("/boards/#{assigns(:board).id}") }
     end
   end
 end
