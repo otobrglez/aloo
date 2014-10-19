@@ -12,13 +12,17 @@
 %table.table.table-condensed.table-striped-x
   %thead
     %tr
+      %th.text-center Week No.
       - Date::DAYNAMES.each do |day|
         %th.text-center=day
   %tbody
     - weeks = []
     - 0.upto(2).each do |w|
+      - starts_at = (DateTime.now-w.weeks).beginning_of_week
+      - ends_at = (DateTime.now-w.weeks).end_of_week
       %tr
-        - (weeks[w] = stats(/\:d\:/, starts_at: (DateTime.now-w.weeks).beginning_of_week, ends_at: (DateTime.now-w.weeks).end_of_week)).each do |k,v|
+        %th.text-center=starts_at.strftime('%W')
+        - (weeks[w] = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at)).each do |k,v|
           %td.text-center
             = v || 0
 
@@ -26,23 +30,32 @@
 %table.table.table-condensed.table-striped-x
   %thead
     %tr
-      - (1..4).to_a.each do |q|
-        %th.text-center= "Q#{q}"
+      %th.text-center Year
+      - quads.each_with_index do |(starts_at, ends_at), i|
+        %th.text-center
+          = "Q#{(i+1)}"
+          %br/
+          %small
+            = [starts_at, ends_at].map {|t| t.strftime('%b') }.join(" - ")
   %tbody
+    - 0.upto(1).each do |q|
+      - year = DateTime.now.year-q
+      %tr
+        %th.text-center=year
+        - quads(year).each_with_index do |(starts_at, ends_at), i|
+          %td.text-center{style: "width: 20%"}
+            - sum = stats(/\:d\:/, starts_at: starts_at, ends_at: ends_at).inject(0.0){|sum, (k,v)| sum += (v || '0').to_f }
+            = '%.2f' % sum
+-#
+  %h3 This year
+  %table.table.table-condensed.table-striped-x
     %tr
-      - stats(/\:q\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
-        %td.text-center{style: 'width: 25%'}
+      - (Date::MONTHNAMES[1..-1]).each do |m|
+        %th.text-center=m
+    %tr
+      - stats(/\:m\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
+        %td.text-center{style: 'width: 8%'}
           = v || 0
-
-%h3 This year
-%table.table.table-condensed.table-striped-x
-  %tr
-    - (Date::MONTHNAMES[1..-1]).each do |m|
-      %th.text-center=m
-  %tr
-    - stats(/\:m\:/, starts_at: DateTime.now.at_beginning_of_year, ends_at: DateTime.now.end_of_year).each do |k,v|
-      %td.text-center{style: 'width: 8%'}
-        = v || 0
 
 
 

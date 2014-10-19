@@ -26,9 +26,14 @@ class BoardsController < ApplicationController
   def short_key key
     key.gsub(@board.id, @board.id[0..2]+"..")
   end
-  helper_method :short_key
 
+  def quads year=DateTime.now.year
+    (1..4).to_a.map { |i| d=Date.new(year, i*3); [d.beginning_of_quarter, d.end_of_quarter] }
+  end
+
+  helper_method :short_key
   helper_method :stats
+  helper_method :quads
 
   private
 

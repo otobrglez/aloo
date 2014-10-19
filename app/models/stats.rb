@@ -26,9 +26,13 @@ class Stats
       DateTime.iso8601(rends_at)
     end
 
-    (@date_range = (starts_at..ends_at)).map do |date|
-      k = KpiKey.new(@key, date)
-      k.keys
+    (@date_range = (starts_at...ends_at).to_a).map do |date|
+      # return nil if !date.valid_date?
+      begin
+        KpiKey.new(@key, date).keys
+      rescue ArgumentError
+        nil
+      end
     end.flatten.uniq
   end
 
