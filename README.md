@@ -1,6 +1,6 @@
 # Aloo
 [Aloo] is simple way to create and share real-time analytical dashboards with others.
-Think of it as **GIST for data**.
+Think of it as **GIST for data**. [Aloo] is open-source and also available on [http://aloo.io][Aloo].
 
 - [Oto Brglez](https://github.com/otobrglez)
 
