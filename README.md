@@ -1,12 +1,19 @@
-# aloo
-
-aloo - Analytics when you need it
+# Aloo
+[Aloo] is simple way to create and share real-time analytical dashboards with others.
+Think of it as **GIST for data**.
 
 - [Oto Brglez](https://github.com/otobrglez)
+
+## Why?
+Aloo was build for [Rails Rumble 2014][rumble] in 48h time frame. I build it becouse I could. ;)
 
 ## Setup for development
 
     brew install redis
     foreman start -f Procfile.development
-    guard
     powder link ; powder open
+    guard
+    
+
+[Aloo]:http://aloo.io
+[rumble]: http://railsrumble.com/entries/153-aloo-business-analytics-fast
