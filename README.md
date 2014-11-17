@@ -5,7 +5,7 @@ Think of it as **GIST for data**.
 - [Oto Brglez](https://github.com/otobrglez)
 
 ## Why?
-Aloo was build for [Rails Rumble 2014][rumble] in 48h time frame. I build it becouse I could. ;)
+[Aloo] was build for [Rails Rumble 2014][rumble] in 48 hours time frame. I build it becouse I could. ;) Please read my [blog post](http://otobrglez.opalab.com/rails/2014/10/24/aloo-on-rails-rumble-2014.html) about Aloo and my participation on Rails Rumble.
 
 ## Setup for development
 
