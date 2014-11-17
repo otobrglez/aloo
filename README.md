@@ -13,7 +13,10 @@ Think of it as **GIST for data**. [Aloo] is open-source and also available on [h
     foreman start -f Procfile.development
     powder link ; powder open
     guard
-    
+
+## Licence
+
+[LGPL](https://www.gnu.org/copyleft/lesser.html)
 
 [Aloo]:http://aloo.io
 [rumble]: http://railsrumble.com/entries/153-aloo-business-analytics-fast
